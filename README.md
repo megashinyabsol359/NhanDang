@@ -14,5 +14,3 @@
 - Ở đây có kèm theo 2 thư mục chứa ảnh để test thử phần nhận dạng
   + Thư mục pos: chứa ảnh có khuôn mặt người
   + Thự mục neg: chứa ảnh không có khuôn mặt người
-
-## Kết quả test thử nhận dạng
