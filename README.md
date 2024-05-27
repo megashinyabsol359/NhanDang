@@ -1,7 +1,7 @@
 # Hướng dẫn sử dụng
 ## Môi trường và thư viện: 
 + Ngôn ngữ: python 3.12 (nhớ chọn cài pip)
-+ Thư viện deepface (pip install deepface)
++ Thư viện deepface (pip install -r requirements.txt)
 + Công cụ sử dụng khi test thử: visual studio code
 
 ## Cách sử dụng
