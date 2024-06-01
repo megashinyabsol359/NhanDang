@@ -3,9 +3,8 @@ from deepface import DeepFace
 import os
 import time
 
-def count_faces_with_timer(directory):
+def count_faces_with_timer(directory, backend = "opencv", isNeg = False):
  
-
     # Khởi tạo bộ đếm ảnh và thời gian bắt đầu
     count_detected = 0
     start_time = time.time()
@@ -33,7 +32,7 @@ def count_faces_with_timer(directory):
 
         try:
             # Sử dụng DeepFace để phát hiện khuôn mặt
-            faces = DeepFace.extract_faces(img_path)
+            faces = DeepFace.extract_faces(img_path, detector_backend = backend)
 
             # Cập nhật bộ đếm ảnh có khuôn mặt
             count_detected += 1
@@ -66,17 +65,27 @@ def count_faces_with_timer(directory):
     # Tính toán tổng thời gian thực thi
     total_time = time.time() - start_time
 
+    #Tính độ chính xác 
+    total_files = num_files
+    count_files = count_detected
+    if isNeg == True:
+        count_files = total_files - count_detected
+
+    accuracy = count_files / total_files * 100
+    
+
     # In thông tin
     print(f"\nĐã xử lý {num_files} ảnh trong thư mục '{directory}'.")
     print(f"Tổng số hình đếm được: {count_detected}")
     print(f"Tổng thời gian thực thi: {total_time:.2f} giây")
-    print(f"Ảnh có bounding box được lưu trong thư mục '{output_dir}'.")
+    print(f"Ảnh có bounding box được lưu trong thư mục: '{output_dir}'")
+    print(f"Độ chính xác: {accuracy} %")
 
     return count_detected
 
 # Ví dụ sử dụng cho pos
 directory = "pos"  # Thay đổi thư mục này theo ý bạn
-count_detected = count_faces_with_timer(directory)
+count_detected = count_faces_with_timer(directory, "dlib")
 
 # In số lượng ảnh có khuôn mặt được phát hiện
 print(f"Số lượng ảnh có khuôn mặt: {count_detected}")
